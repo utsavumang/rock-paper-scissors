@@ -6,16 +6,54 @@
 
     <link rel="stylesheet" href="styles.css">
     <title>Rock, Paper & Scissors!</title>
+
+    <script src="javascript.js" defer></script>
 </head>
 <body>
     <div class = "fact-box">
-        <h1 class = "fact-header">A Useless Piece of Information </h1>
+        <h1 class = "header">A Useless Piece of Information </h1>
         <p class="fact">Till about the 1500 B.C.E., when scissors were invented, the game resulted in all ties (all rocks). 
             Post it, till the invention of paper, there was an obvious rock advantage. Only when the Chinese finally invented paper, did the game become truly balanced</p>
     </div>
 
+    <div class = "game-box"> 
+        <h1 class="header">ROCK, PAPER and SCISSORS!</h1>
+
+        <div class="score-box">
+            <div class="user">
+                <h2 class = sub-header>Your Score</h2>
+                <h2 id="user-score">4</h2>
+            </div>
+            
+            <div class="computer">
+                <h2 class = sub-header>Computer Score</h2>
+                <h2 id="computer-score">3</h2>
+            </div>
+
+        </div>
+
+        <div class="round-box">
+            <p>You Chose: Rock</p>
+            <p>Computer Chose: Scissors</p>
+            <p>You Won!</p>
+        </div>
+
+        <div>Choose to play - </div>
+
+        <div class = 'choice-panel'>
+            <button>ROCK</button>
+            <button>PAPER</button>
+            <button>SCISSORS</button>
+        </div>
+
+        
+
+    </div>
+
+    
 
 
-    <script src="javascript.js"></script>
+
+    
 </body>
 </html>
