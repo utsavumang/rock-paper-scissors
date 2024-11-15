@@ -1,79 +1,140 @@
-// console.log("Hiyaa")
+// 0. Rock
+// 1. Paper
+// 2. Scissors
 
-// function getComputerChoice() {
-//     let val = Math.floor(Math.random()*3);
-//     return val;
-// }
+function getComputerChoice() {
+    let val = Math.floor(Math.random()*3);
+    return val;
+}
 
-// function getHumanChoice() {
-//     let val = parseInt(prompt("Enter Your Choice: \n0. Rock\n1. Paper\n2. Scissors"));
-//     return val;
-// }
 
-// let humanScore = 0;
-// let computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
 
-// let rounds = parseInt(prompt("Enter the Number of Rounds you wish to play: "));
+function chosezero() {
+    playRound(0);
+}
 
-// function playRound(humanChoice, computerChoice) {
+function choseone() {
+    playRound(1);
+}
+
+function chosetwo() {
+    playRound(2);
+}
+
+userScoreBox = document.querySelector('#user-score');
+computerScoreBox = document.querySelector('#computer-score');
+
+function displayScore() {
+
+
+    userScoreBox.textContent = humanScore;
+    computerScoreBox.textContent = computerScore;
+
+    userChoiceBox.replaceWith(userChoiceBox);
+
+}
+
+
+function playRound(humanChoice) {
     
+    let computerChoice = getComputerChoice();
+    
+    const choiceArr = ['Rock', 'Paper', 'Scissors']
 
-//     if (computerChoice == 0 && humanChoice == 2){
-//         computerScore++;
-//         console.log("\nComputer won the Round")
-//         return;
-//     }
+    // Displaying the choices of user
+    userChoiceBox = document.querySelector('#user-choice');
+    userChoiceBox.textContent = 'You Chose: '+ choiceArr[humanChoice];
+    
+    roundBox = document.querySelector('.round-box');
+    roundBox.prepend(userChoiceBox);
 
-//     else if (humanChoice == 0 && computerChoice == 2){
-//         humanScore++;
-//         console.log("\nYou won the Round")
-//         return;
-//     }
+    // Displaying the choices of computer
+    compChoiceBox = document.querySelector('#computer-choice');
+    compChoiceBox.textContent = 'The Computer Chose: ' + choiceArr[computerChoice];
+    
+    roundBox = document.querySelector('.round-box');
+    userChoiceBox.after(userChoiceBox);
 
-//     else if (computerChoice > humanChoice) {
-//         computerScore++;
-//         console.log("\nComputer won the Round")
-//         return;
-//     }
-//     else if (humanChoice > computerChoice){
-//         humanScore++;
-//         console.log("\nYou won the Round")
-//         return;
-//     }
-
-//     else {
-//         console.log("\nRound Tie")
-//     }
-// }
-
-// function displayScores() {
-//     console.log("\nComputer Score: " + computerScore+ "\nHuman Score: " + humanScore);
-// }
+    // Displaying Round Result
+    roundResult = document.querySelector('#round-result');
 
 
-// for (let i = 0; i < rounds; i++){
-//     console.log("\nRound "+(i+1) + "\n")
+    // Round Logic
+    if (computerChoice == 0 && humanChoice == 2){
+        computerScore++;
+        roundResult.textContent = "\nComputer won the Round";
+    }
 
-//     let computerChoice = getComputerChoice();
-//     let humanChoice = getHumanChoice();
+    else if (humanChoice == 0 && computerChoice == 2){
+        humanScore++;
+        roundResult.textContent = "\nYou won the Round";
+    }
+
+    else if (computerChoice > humanChoice) {
+        computerScore++;
+        roundResult.textContent = "\nComputer won the Round";
+        
+    }
+    else if (humanChoice > computerChoice){
+        humanScore++;
+        roundResult.textContent = "\nYou won the Round";
+        
+    }
+
+    else {
+        roundResult.textContent = "\nRound Tie";
+    }
+
+    compChoiceBox.after(roundResult);
+    displayScore();
+
+
+    gameResult = document.querySelector('#game-result');
+
+    if (humanScore >=5 || computerScore >=5) {
+
+        const rock = document.querySelector('#rock-btn');
+        const choicePanel = rock.parentElement;
+        choicePanel.removeChild(rock);
+        choicePanel.removeChild(paper);
+        choicePanel.removeChild(scissor);
+        choicePanel.replaceWith(choicePanel);
+
+    
+    
+        if (humanScore >= 5) {
+            gameResult.textContent = 'You Won the Game';
+            gameResult.classList.toggle("winner");
+            userScoreBox.classList.toggle("winner");
+            computerScoreBox.classList.toggle("loser");
+        }
+    
+        else if (computerScore >= 5) {
+            gameResult.textContent = 'You Lost the Game';
+            gameResult.classList.toggle("loser");
+            userScoreBox.classList.toggle("loser");
+            computerScoreBox.classList.toggle("winner");
+        }
+    
+        gameResult.replaceWith(gameResult);
+    }
+
+
+}
 
 
 
-//     console.log("\nYou Chose " + humanChoice);
-//     console.log("\nComputer Chose " + computerChoice);
-//     playRound(humanChoice, computerChoice);
-//     displayScores();
-// }
-
-// if (computerScore > humanScore){
-//     alert(":/ The Computer Won");
-// }
-
-// else if (computerScore == humanScore) {
-//     alert("It is a Tie!");
-// }
+const rock = document.querySelector('#rock-btn');
+rock.addEventListener("click", chosezero);
 
 
-// else {
-//     alert(":) You Won");
-// }
+const paper = document.querySelector('#paper-btn');
+paper.addEventListener("click", choseone);
+
+const scissor = document.querySelector('#scissor-btn'); 
+scissor.addEventListener("click", chosetwo);
+
+
+
